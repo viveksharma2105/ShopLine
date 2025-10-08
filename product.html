@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav id="mainNav" class="navbar navbar-expand-lg fixed-top navbar-light bg-white">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+  <img src="https://cdn.jsdelivr.net/gh/feathericons/feather@4.29.0/icons/shopping-bag.svg" alt="logo" style="width:40px;height:40px;margin-right:10px;filter:drop-shadow(0 2px 8px #0d6efd);">
+        <span class="logo-shop">SHOP</span><span class="logo-line">LINE</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link nav-cat" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link nav-cat" href="index.html" onclick="filterCategory('Electronics')">Electronics</a></li>
+          <li class="nav-item"><a class="nav-link nav-cat" href="index.html" onclick="filterCategory('Fashion')">Fashion</a></li>
+          <li class="nav-item"><a class="nav-link nav-cat" href="index.html" onclick="filterCategory('Furniture')">Furniture</a></li>
+        </ul>
+        <form class="d-flex me-3" id="search-form">
+          <input id="search-input" class="form-control me-2" type="search" placeholder="Search products" aria-label="Search">
+        </form>
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item">
+            <a class="btn btn-outline-primary" href="index.html">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-5 mt-navbar-spacer">
+    <div id="product-detail" class="row g-4">
+      <!-- Product detail rendered by JS -->
+    </div>
+  </div>
+
+  <!-- Invoice download modal (shows preview) -->
+  <div class="modal fade" id="invoiceModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Order Placed</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-3">Your order has been placed. You can download your invoice below.</p>
+            <button id="download-invoice" class="btn btn-primary">Download Invoice (PDF)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Checkout Modal used for Buy Now -->
+    <div class="modal fade" id="checkoutModalDetail" tabindex="-1" aria-labelledby="checkoutModalLabelDetail" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="checkoutModalLabelDetail">Checkout</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="checkout-detail-form">
+              <div class="mb-3">
+                <label for="custName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="custName" required>
+              </div>
+              <div class="mb-3">
+                <label for="custAddress" class="form-label">Address</label>
+                <input type="text" class="form-control" id="custAddress" required>
+              </div>
+              <div class="mb-3">
+                <label for="custPhone" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="custPhone" required>
+              </div>
+              <div class="mb-3">
+                <label for="custEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="custEmail" required>
+              </div>
+              <div class="mb-3">
+                  <label for="custPromo" class="form-label">Promo Code (optional)</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="custPromo">
+                    <button class="btn btn-outline-secondary" type="button" id="apply-checkout-promo">Apply</button>
+                  </div>
+                  <div id="checkout-promo-msg" class="mt-2"></div>
+                </div>
+                <hr>
+                <div class="mb-3">
+                  <h6>Price Summary</h6>
+                  <div class="d-flex justify-content-between"><span>Item Price</span><span id="summary-item">$0.00</span></div>
+                  <div class="d-flex justify-content-between"><span>Tax (18%)</span><span id="summary-tax">$0.00</span></div>
+                  <div class="d-flex justify-content-between"><span>Discount</span><span id="summary-discount">-$0.00</span></div>
+                  <div class="d-flex justify-content-between fw-bold"><span>Total</span><span id="summary-total">$0.00</span></div>
+                </div>
+              <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" value="" id="autoInvoice">
+                <label class="form-check-label" for="autoInvoice">
+                  Auto-download invoice after placing order
+                </label>
+              </div>
+              <button type="submit" class="btn btn-success w-100">Place Order</button>
+            </form>
+            <div id="checkout-message" class="alert alert-success mt-3 d-none"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
