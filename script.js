@@ -75,10 +75,10 @@ const furniture = [
   ['Sectional Sofa', 899.99, 'photo-1759722665935-0967b4e0da93'],
   ['Patio Set', 349.99, 'photo-1667870703611-f966997e8c52'],
   ['Console Table', 129.99, 'photo-1609879938030-31acdeded104'],
-  ['Futon', 219.99, 'photo-1555041469-a586c61ea9bc'],
-  ['Bean Bag', 49.99, 'photo-1582582494709-3b3b8c71f8b7'],
-  ['Loveseat', 399.99, 'photo-1600585154340-be6161a56a0c'],
-  ['Cabinet', 159.99, 'photo-1578898882341-2cc6e6d0c8b3']
+  ['Futon', 219.99, 'photo-1567538096630-e0c55bd6374c'],
+  ['Bean Bag', 49.99, 'photo-1701854957177-99ec55ad574e'],
+  ['Loveseat', 399.99, 'photo-1595436790404-ae5494edcf00'],
+  ['Cabinet', 159.99, 'photo-1661830402547-fbaf3fb6d40a']
 ];
 
 const flights = [
