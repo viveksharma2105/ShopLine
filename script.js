@@ -11,7 +11,7 @@ function unsplash(query, w = 500) {
   return `https://images.unsplash.com/photo-` + encodeURIComponent(query) + `?auto=format&fit=crop&w=${w}&q=80`;
 }
 
-// We'll add 20 items for Electronics, Fashion, Furniture, Flight Booking (as 'Flight') and Contact (as Services)
+// We'll add 20 items for Electronics, Fashion, Furniture, skinCare) 
 const electronics = [
   ['Wireless Headphones', 99.99, 'photo-1520170350707-b2da59970118'],
   ['Wristwatch', 149.99, 'photo-1622434641406-a158123450f9'],
@@ -81,57 +81,58 @@ const furniture = [
   ['Cabinet', 159.99, 'photo-1661830402547-fbaf3fb6d40a']
 ];
 
-const flights = [
-  ['Roundtrip: NYC - LAX', 299.99, 'photo-1504813184181-36a1d5c16a8f'],
-  ['One-way: LHR - DXB', 199.99, 'photo-1493558103817-58b2924bce98'],
-  ['Roundtrip: SFO - SEA', 149.99, 'photo-1473186505569-9c61870c11f9'],
-  ['One-way: DEL - BOM', 99.99, 'photo-1508264165352-258a6bce4d5d'],
-  ['Roundtrip: SYD - MEL', 129.99, 'photo-1482192505345-5655af888cc4'],
-  ['Roundtrip: PAR - BCN', 89.99, 'photo-1496307042754-b4aa456c4a2d'],
-  ['One-way: JFK - MIA', 79.99, 'photo-1507525428034-b723cf961d3e'],
-  ['Roundtrip: TOR - YVR', 159.99, 'photo-1526772662000-3f88f10405ff'],
-  ['Roundtrip: FRA - IST', 179.99, 'photo-1496307042754-b4aa456c4a2d'],
-  ['One-way: NRT - HND', 69.99, 'photo-1473186505569-9c61870c11f9'],
-  ['Roundtrip: HKG - SIN', 139.99, 'photo-1482192505345-5655af888cc4'],
-  ['Roundtrip: MAD - LIS', 89.99, 'photo-1508264165352-258a6bce4d5d'],
-  ['One-way: MEX - GDL', 59.99, 'photo-1507525428034-b723cf961d3e'],
-  ['Roundtrip: BCN - ROM', 99.99, 'photo-1526772662000-3f88f10405ff'],
-  ['One-way: ICN - KIX', 119.99, 'photo-1493558103817-58b2924bce98'],
-  ['Roundtrip: JNB - CPT', 199.99, 'photo-1504813184181-36a1d5c16a8f'],
-  ['One-way: BKK - CNX', 79.99, 'photo-1473186505569-9c61870c11f9'],
-  ['Roundtrip: LAX - LAS', 49.99, 'photo-1507525428034-b723cf961d3e'],
-  ['One-way: AMS - BRU', 69.99, 'photo-1496307042754-b4aa456c4a2d'],
-  ['Roundtrip: BOS - DFW', 119.99, 'photo-1526772662000-3f88f10405ff']
+const skinCare = [
+  ['Hyaluronic Mask', 29.99, 'photo-1743926959711-73960c2a7b4e'],
+  ['Vitamin C Brightening Cream', 24.99, 'photo-1556228720-195a672e8a03'],
+  ['Aloe Vera Moisturizer', 19.99, 'photo-1748390359572-8e7a47bf5cb5'],
+  ['Anti-Aging Night Cream', 39.99, 'photo-1742033193400-45dab682c989'],
+  ['SPF 50 Sunscreen Lotion', 22.99, 'photo-1698912269897-c9325da81afc'],
+  ['Moisturizing Shampoo', 18.99, 'photo-1747098393451-6b985f62a2c2'],
+  ['Fabric-Shine Spray', 14.99, 'photo-1749394043410-7acc39b5fbea'],
+  ['Rose Water Toner', 16.99, 'photo-1630422528609-e2f076a2ef37'],
+  ['Green Tea Face Mask', 12.99, 'photo-1681376657924-cad3ce49a9a2'],
+  ['Hydratic Tonic', 17.99, 'photo-1700709678003-01941f72fb92'],
+  ['Sephora Eye Cream', 27.99, 'photo-1656147961292-a3fd00ac95ac'],
+  ['Coconut Hair Oil', 15.99, 'photo-1690228987673-f6e104fa653c'],
+  ['Vitamin C Serum', 34.99, 'photo-1618120508902-c8d05e7985ee'],
+  ['Lip Mask', 13.99, 'photo-1731287035690-9a26bda17b74'],
+  ['Turmeric Face Wash', 21.99, 'photo-1564594218151-a67498fb2922'],
+  ['Body Lotion', 32.99, 'photo-1632221522866-bf40bad1db53'],
+  ['Hair Shampoo', 14.49, 'photo-1660090455998-1395e8298f62'],
+  ['Acne Treatment lotion', 9.99, 'photo-1630398917451-1a409990fbc5'],
+  ['Hand Wash Bottle', 8.99, 'photo-1705155726507-8e1b9119349b'],
+  ['Body soap', 19.49, 'photo-1622374297904-a5c3e8ccf780']
 ];
 
-const services = [
-  ['Contact: Customer Support', 0.00, 'photo-1504384308090-c894fdcc538d'],
-  ['Contact: Sales Inquiry', 0.00, 'photo-1529333166437-7750a6dd5a70'],
-  ['Contact: Wholesale', 0.00, 'photo-1504384308090-c894fdcc538d'],
-  ['Contact: Careers', 0.00, 'photo-1529333166437-7750a6dd5a70'],
-  ['Contact: Partner', 0.00, 'photo-1504384308090-c894fdcc538d'],
-  ['Contact: Media', 0.00, 'photo-1529333166437-7750a6dd5a70'],
-  ['Contact: Events', 0.00, 'photo-1504384308090-c894fdcc538d'],
-  ['Contact: Feedback', 0.00, 'photo-1529333166437-7750a6dd5a70'],
-  ['Contact: Store Locator', 0.00, 'photo-1504384308090-c894fdcc538d'],
-  ['Contact: Affiliate', 0.00, 'photo-1529333166437-7750a6dd5a70'],
-  ['Contact: Returns', 0.00, 'photo-1504384308090-c894fdcc538d'],
-  ['Contact: Refunds', 0.00, 'photo-1529333166437-7750a6dd5a70'],
-  ['Contact: Policy', 0.00, 'photo-1504384308090-c894fdcc538d'],
-  ['Contact: Partnerships', 0.00, 'photo-1529333166437-7750a6dd5a70'],
-  ['Contact: Legal', 0.00, 'photo-1504384308090-c894fdcc538d'],
-  ['Contact: Help Center', 0.00, 'photo-1529333166437-7750a6dd5a70'],
-  ['Contact: Press', 0.00, 'photo-1504384308090-c894fdcc538d'],
-  ['Contact: Investors', 0.00, 'photo-1529333166437-7750a6dd5a70'],
-  ['Contact: Sustainability', 0.00, 'photo-1504384308090-c894fdcc538d'],
-  ['Contact: Other', 0.00, 'photo-1529333166437-7750a6dd5a70']
-];
+
+// const services = [
+//   ['Contact: Customer Support', 0.00, 'photo-1504384308090-c894fdcc538d'],
+//   ['Contact: Sales Inquiry', 0.00, 'photo-1529333166437-7750a6dd5a70'],
+//   ['Contact: Wholesale', 0.00, 'photo-1504384308090-c894fdcc538d'],
+//   ['Contact: Careers', 0.00, 'photo-1529333166437-7750a6dd5a70'],
+//   ['Contact: Partner', 0.00, 'photo-1504384308090-c894fdcc538d'],
+//   ['Contact: Media', 0.00, 'photo-1529333166437-7750a6dd5a70'],
+//   ['Contact: Events', 0.00, 'photo-1504384308090-c894fdcc538d'],
+//   ['Contact: Feedback', 0.00, 'photo-1529333166437-7750a6dd5a70'],
+//   ['Contact: Store Locator', 0.00, 'photo-1504384308090-c894fdcc538d'],
+//   ['Contact: Affiliate', 0.00, 'photo-1529333166437-7750a6dd5a70'],
+//   ['Contact: Returns', 0.00, 'photo-1504384308090-c894fdcc538d'],
+//   ['Contact: Refunds', 0.00, 'photo-1529333166437-7750a6dd5a70'],
+//   ['Contact: Policy', 0.00, 'photo-1504384308090-c894fdcc538d'],
+//   ['Contact: Partnerships', 0.00, 'photo-1529333166437-7750a6dd5a70'],
+//   ['Contact: Legal', 0.00, 'photo-1504384308090-c894fdcc538d'],
+//   ['Contact: Help Center', 0.00, 'photo-1529333166437-7750a6dd5a70'],
+//   ['Contact: Press', 0.00, 'photo-1504384308090-c894fdcc538d'],
+//   ['Contact: Investors', 0.00, 'photo-1529333166437-7750a6dd5a70'],
+//   ['Contact: Sustainability', 0.00, 'photo-1504384308090-c894fdcc538d'],
+//   ['Contact: Other', 0.00, 'photo-1529333166437-7750a6dd5a70']
+// ];
 
 electronics.forEach(([n,p,img]) => addProduct(n,p,`https://images.unsplash.com/${img}?auto=format&fit=crop&w=600&q=80`,'Electronics'));
 fashion.forEach(([n,p,img]) => addProduct(n,p,`https://images.unsplash.com/${img}?auto=format&fit=crop&w=600&q=80`,'Fashion'));
 furniture.forEach(([n,p,img]) => addProduct(n,p,`https://images.unsplash.com/${img}?auto=format&fit=crop&w=600&q=80`,'Furniture'));
-flights.forEach(([n,p,img]) => addProduct(n,p,`https://images.unsplash.com/${img}?auto=format&fit=crop&w=600&q=80`,'Flight'));
-services.forEach(([n,p,img]) => addProduct(n,p,`https://images.unsplash.com/${img}?auto=format&fit=crop&w=600&q=80`,'Contact'));
+skinCare.forEach(([n,p,img]) => addProduct(n,p,`https://images.unsplash.com/${img}?auto=format&fit=crop&w=600&q=80`,'SkinCare'));
+//services.forEach(([n,p,img]) => addProduct(n,p,`https://images.unsplash.com/${img}?auto=format&fit=crop&w=600&q=80`,'Contact'));
 
 // Category filter
 function filterCategory(cat) {
