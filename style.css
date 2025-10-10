@@ -132,7 +132,7 @@ body {
 }
 
 /* Product detail styles */
-.product-gallery { display: flex; gap: 12px; }
+
 .product-main-img { width: 100%; border-radius: 8px; }
 .product-thumb { width: 72px; height: 72px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 1px solid #ddd; }
 .product-specs dt { font-weight: 600; }

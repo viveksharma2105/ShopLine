@@ -359,11 +359,7 @@ function renderProductDetail() {
   container.innerHTML = `
     <div class="col-md-6">
       <img id="main-img" src="${product.image}" class="product-main-img img-fluid shadow-sm" alt="${product.name}">
-      <div class="d-flex mt-3 product-gallery">
-        <img src="${product.image}" class="product-thumb" alt="thumb1">
-        <img src="${product.image}" class="product-thumb" alt="thumb2">
-        <img src="${product.image}" class="product-thumb" alt="thumb3">
-      </div>
+      
     </div>
     <div class="col-md-6">
       <h2>${product.name}</h2>
