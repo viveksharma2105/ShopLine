@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -9,7 +8,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav id="mainNav" class="navbar navbar-expand-lg fixed-top navbar-light bg-white">
+  <nav id="mainNav" class="navbar navbar-expand-lg fixed-top navbar-dark bg-gradient-primary shadow">
     <div class="container-fluid">
       <a class="navbar-brand d-flex align-items-center" href="index.html">
   <img src="https://cdn.jsdelivr.net/gh/feathericons/feather@4.29.0/icons/shopping-bag.svg" alt="logo" style="width:40px;height:40px;margin-right:10px;filter:drop-shadow(0 2px 8px #0d6efd);">
@@ -18,22 +17,27 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link nav-cat" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link nav-cat" href="index.html" onclick="filterCategory('Electronics')">Electronics</a></li>
-          <li class="nav-item"><a class="nav-link nav-cat" href="index.html" onclick="filterCategory('Fashion')">Fashion</a></li>
-          <li class="nav-item"><a class="nav-link nav-cat" href="index.html" onclick="filterCategory('Furniture')">Furniture</a></li>
-        </ul>
-        <form class="d-flex me-3" id="search-form">
-          <input id="search-input" class="form-control me-2" type="search" placeholder="Search products" aria-label="Search">
-        </form>
-        <ul class="navbar-nav align-items-center">
-          <li class="nav-item">
-            <a class="btn btn-outline-primary" href="index.html">Login</a>
-          </li>
-        </ul>
-      </div>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="w-100 d-flex flex-column flex-lg-row align-items-center justify-content-between">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0 flex-row gap-2">
+            <li class="nav-item"><a class="nav-link nav-cat" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link nav-cat" href="index.html" onclick="filterCategory('Electronics')">Electronics</a></li>
+            <li class="nav-item"><a class="nav-link nav-cat" href="index.html" onclick="filterCategory('Fashion')">Fashion</a></li>
+            <li class="nav-item"><a class="nav-link nav-cat" href="index.html" onclick="filterCategory('Furniture')">Furniture</a></li>
+            <li class="nav-item"><a class="nav-link nav-cat" href="index.html#aboutus" onclick="scrollToSection('aboutus')">About Us</a></li>
+          </ul>
+          <div class="d-flex align-items-center gap-2 ms-lg-auto mt-3 mt-lg-0">
+            <form class="d-flex me-2" id="search-form">
+              <input id="search-input" class="form-control me-2" type="search" placeholder="Search products" aria-label="Search">
+            </form>
+            <a class="nav-link position-relative" href="#" data-bs-toggle="modal" data-bs-target="#cartModal">
+              <img src="https://cdn.jsdelivr.net/gh/feathericons/feather@4.29.0/icons/shopping-cart.svg" alt="cart" style="width:28px;height:28px;filter:drop-shadow(0 2px 8px #0d6efd);vertical-align:middle;">
+              <span id="cart-count" class="badge bg-danger position-absolute top-0 start-100 translate-middle">0</span>
+            </a>
+            <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">Sign Up</button>
+          </div>
+        </div>
     </div>
   </nav>
 

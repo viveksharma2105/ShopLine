@@ -342,6 +342,55 @@ window.addEventListener('DOMContentLoaded', () => {
 window.addToCart = addToCart;
 window.removeFromCart = removeFromCart;
 
+// About Us counters animation
+function animateCounters() {
+  const counters = document.querySelectorAll('.counter');
+  if (!counters || counters.length === 0) return;
+  counters.forEach(counter => {
+    const target = parseInt(counter.getAttribute('data-target'), 10) || 0;
+    const duration = 1400; // ms
+    const start = 0;
+    const startTime = performance.now();
+    function update(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const value = Math.floor(progress * (target - start) + start);
+      counter.textContent = value.toLocaleString();
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  });
+}
+
+// Trigger animation when About Us enters viewport or when link clicked
+function setupAboutUsAnimation() {
+  const about = document.getElementById('aboutus');
+  if (!about) return;
+
+  // IntersectionObserver to animate when visible
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounters();
+        io.disconnect();
+      }
+    });
+  }, { threshold: 0.4 });
+  io.observe(about);
+
+  // Also animate on clicking About Us nav link
+  const aboutLinks = document.querySelectorAll('a[href$="#aboutus"], a[href*="#aboutus"]');
+  aboutLinks.forEach(a => {
+    a.addEventListener('click', () => {
+      setTimeout(() => animateCounters(), 600);
+    });
+  });
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  setupAboutUsAnimation();
+});
+
 /* ----------------- Product Detail Page Logic ----------------- */
 // Helper: get query param
 function getQueryParam(key) {
