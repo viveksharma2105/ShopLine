@@ -105,34 +105,11 @@ const skinCare = [
 ];
 
 
-// const services = [
-//   ['Contact: Customer Support', 0.00, 'photo-1504384308090-c894fdcc538d'],
-//   ['Contact: Sales Inquiry', 0.00, 'photo-1529333166437-7750a6dd5a70'],
-//   ['Contact: Wholesale', 0.00, 'photo-1504384308090-c894fdcc538d'],
-//   ['Contact: Careers', 0.00, 'photo-1529333166437-7750a6dd5a70'],
-//   ['Contact: Partner', 0.00, 'photo-1504384308090-c894fdcc538d'],
-//   ['Contact: Media', 0.00, 'photo-1529333166437-7750a6dd5a70'],
-//   ['Contact: Events', 0.00, 'photo-1504384308090-c894fdcc538d'],
-//   ['Contact: Feedback', 0.00, 'photo-1529333166437-7750a6dd5a70'],
-//   ['Contact: Store Locator', 0.00, 'photo-1504384308090-c894fdcc538d'],
-//   ['Contact: Affiliate', 0.00, 'photo-1529333166437-7750a6dd5a70'],
-//   ['Contact: Returns', 0.00, 'photo-1504384308090-c894fdcc538d'],
-//   ['Contact: Refunds', 0.00, 'photo-1529333166437-7750a6dd5a70'],
-//   ['Contact: Policy', 0.00, 'photo-1504384308090-c894fdcc538d'],
-//   ['Contact: Partnerships', 0.00, 'photo-1529333166437-7750a6dd5a70'],
-//   ['Contact: Legal', 0.00, 'photo-1504384308090-c894fdcc538d'],
-//   ['Contact: Help Center', 0.00, 'photo-1529333166437-7750a6dd5a70'],
-//   ['Contact: Press', 0.00, 'photo-1504384308090-c894fdcc538d'],
-//   ['Contact: Investors', 0.00, 'photo-1529333166437-7750a6dd5a70'],
-//   ['Contact: Sustainability', 0.00, 'photo-1504384308090-c894fdcc538d'],
-//   ['Contact: Other', 0.00, 'photo-1529333166437-7750a6dd5a70']
-// ];
-
 electronics.forEach(([n,p,img]) => addProduct(n,p,`https://images.unsplash.com/${img}?auto=format&fit=crop&w=600&q=80`,'Electronics'));
 fashion.forEach(([n,p,img]) => addProduct(n,p,`https://images.unsplash.com/${img}?auto=format&fit=crop&w=600&q=80`,'Fashion'));
 furniture.forEach(([n,p,img]) => addProduct(n,p,`https://images.unsplash.com/${img}?auto=format&fit=crop&w=600&q=80`,'Furniture'));
 skinCare.forEach(([n,p,img]) => addProduct(n,p,`https://images.unsplash.com/${img}?auto=format&fit=crop&w=600&q=80`,'SkinCare'));
-//services.forEach(([n,p,img]) => addProduct(n,p,`https://images.unsplash.com/${img}?auto=format&fit=crop&w=600&q=80`,'Contact'));
+
 
 // Category filter
 function filterCategory(cat) {
