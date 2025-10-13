@@ -218,18 +218,46 @@ function renderCart() {
   cart.forEach(item => {
     subtotal += item.price * item.qty;
     const div = document.createElement('div');
-    div.className = 'cart-item';
+    div.className = 'cart-item d-flex align-items-center gap-2';
     div.innerHTML = `
       <img src="${item.image}" class="cart-item-img" alt="${item.name}">
       <div class="flex-grow-1">
         <h6>${item.name}</h6>
         <div>Price: $${item.price.toFixed(2)}</div>
-        <div>Qty: ${item.qty}</div>
+        <div class="d-flex align-items-center gap-2">
+          <button class="btn btn-outline-secondary btn-sm" data-action="decrease" data-id="${item.id}">-</button>
+          <span>Qty: ${item.qty}</span>
+          <button class="btn btn-outline-secondary btn-sm" data-action="increase" data-id="${item.id}">+</button>
+        </div>
         <div>Subtotal: $${(item.price * item.qty).toFixed(2)}</div>
       </div>
       <button class="btn btn-outline-danger btn-sm" onclick="removeFromCart(${item.id})">Remove</button>
     `;
     container.appendChild(div);
+  });
+  // Add event listeners for + and - buttons
+  container.querySelectorAll('button[data-action="increase"]').forEach(btn => {
+    btn.onclick = function() {
+      const id = parseInt(btn.getAttribute('data-id'));
+      const item = cart.find(i => i.id === id);
+      if (item) { item.qty += 1; saveCart(); renderCart(); updateCartBadge(); }
+      // Recalculate promo after quantity change
+      if (typeof handleApplyPromo === 'function' && appliedPromo) {
+        renderCart();
+      }
+    };
+  });
+  container.querySelectorAll('button[data-action="decrease"]').forEach(btn => {
+    btn.onclick = function() {
+      const id = parseInt(btn.getAttribute('data-id'));
+      const item = cart.find(i => i.id === id);
+      if (item && item.qty > 1) { item.qty -= 1; saveCart(); renderCart(); updateCartBadge(); }
+      else if (item && item.qty === 1) { removeFromCart(id); }
+      // Recalculate promo after quantity change
+      if (typeof handleApplyPromo === 'function' && appliedPromo) {
+        renderCart();
+      }
+    };
   });
   let discount = 0;
   if (appliedPromo === 'SAVE10') {
@@ -306,13 +334,30 @@ function handleCheckout(e) {
 
 // Event listeners
 window.addEventListener('DOMContentLoaded', () => {
-  renderProducts();
+  // Add event listener for promo code button in cart modal
+  const promoBtn = document.getElementById('apply-promo');
+  if (promoBtn) {
+    promoBtn.onclick = handleApplyPromo;
+  }
+  // Only render products if product-list exists (main page)
+  if (document.getElementById('product-list')) {
+    renderProducts();
+  }
   updateCartBadge();
   renderCart();
-  document.getElementById('apply-promo').addEventListener('click', handleApplyPromo);
-  document.getElementById('checkout-form').addEventListener('submit', handleCheckout);
-  // Re-render cart when cart modal is opened
-  document.getElementById('cartModal').addEventListener('show.bs.modal', renderCart);
+  // Delegate cart modal open to always work
+  document.body.addEventListener('click', function(e) {
+    const cartBtn = e.target.closest('a[data-bs-target="#cartModal"]');
+    if (cartBtn) {
+      e.preventDefault();
+      renderCart();
+      const cartModal = document.getElementById('cartModal');
+      if (cartModal) {
+        const modalInstance = bootstrap.Modal.getOrCreateInstance(cartModal);
+        modalInstance.show();
+      }
+    }
+  });
 });
 
 // Expose for inline onclick

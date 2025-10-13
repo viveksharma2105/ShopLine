@@ -181,6 +181,9 @@ body {
 
 /* Navbar scroll effect */
 #mainNav { transition: all 0.25s ease; box-shadow: none; }
+
+/* Prevent navbar shake when modal opens (focus outline/scrollbar) */
+.modal-open .navbar { margin-right: 0 !important; transition: none !important; }
 #mainNav.scrolled { box-shadow: 0 4px 18px rgba(0,0,0,0.08); transform: translateY(-2px); }
 
 /* Navbar shrink on scroll */
