@@ -311,7 +311,7 @@
         </div>
     </div>
 
-    <!-- Checkout Modal -->
+    <!-- Checkout Modal (cart) - same structure as product detail checkout -->
     <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -342,6 +342,30 @@
                                 <option value="UPI">UPI</option>
                             </select>
                         </div>
+
+                        <div class="mb-3">
+                          <label for="custPromo" class="form-label">Promo Code (optional)</label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" id="custPromo">
+                            <button class="btn btn-outline-secondary" type="button" id="apply-checkout-promo">Apply</button>
+                          </div>
+                          <div id="checkout-promo-msg" class="mt-2"></div>
+                        </div>
+
+                        <hr>
+                        <div class="mb-3">
+                          <h6>Price Summary</h6>
+                          <div class="d-flex justify-content-between"><span>Item Price</span><span id="summary-item">$0.00</span></div>
+                          <div class="d-flex justify-content-between"><span>Tax (18%)</span><span id="summary-tax">$0.00</span></div>
+                          <div class="d-flex justify-content-between"><span>Discount</span><span id="summary-discount">-$0.00</span></div>
+                          <div class="d-flex justify-content-between fw-bold"><span>Total</span><span id="summary-total">$0.00</span></div>
+                        </div>
+
+                        <div class="form-check mb-3">
+                          <input class="form-check-input" type="checkbox" value="" id="autoInvoice">
+                          <label class="form-check-label" for="autoInvoice">Auto-download invoice after placing order</label>
+                        </div>
+
                         <button type="submit" class="btn btn-primary w-100">Complete Purchase</button>
                     </form>
                     <div id="checkout-success" class="alert alert-success mt-3 d-none" role="alert">
@@ -352,8 +376,25 @@
         </div>
     </div>
 
+    <!-- Invoice Modal (order placed) -->
+    <div class="modal fade" id="invoiceModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Order Placed</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-3">Your order has been placed. You can download your invoice below.</p>
+                    <button id="download-invoice" class="btn btn-primary">Download Invoice (PDF)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <!-- Modular JS -->
     <script src="../js/products.js"></script>
     <script src="../js/cart.js"></script>

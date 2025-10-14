@@ -154,6 +154,25 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Populate cart-based checkout modal summary
+  const checkoutModalCartEl = document.getElementById('checkoutModal');
+  if (checkoutModalCartEl) {
+    checkoutModalCartEl.addEventListener('show.bs.modal', () => {
+      // compute subtotal from cart
+      let subtotal = 0;
+      if (Array.isArray(cart) && cart.length > 0) {
+        subtotal = cart.reduce((s, it) => s + (it.price * (it.qty || it.quantity || 0)), 0);
+      }
+      const itemPrice = subtotal;
+      const summaryItem = document.getElementById('summary-item'); if (summaryItem) summaryItem.textContent = `$${itemPrice.toFixed(2)}`;
+      const tax = +(itemPrice * 0.18).toFixed(2);
+      const summaryTax = document.getElementById('summary-tax'); if (summaryTax) summaryTax.textContent = `$${tax.toFixed(2)}`;
+      const summaryDisc = document.getElementById('summary-discount'); if (summaryDisc) summaryDisc.textContent = '-$0.00';
+      const summaryTotal = document.getElementById('summary-total'); if (summaryTotal) summaryTotal.textContent = `$${(itemPrice + tax).toFixed(2)}`;
+      const msg = document.getElementById('checkout-promo-msg'); if (msg) { msg.textContent = ''; msg.className = ''; }
+    });
+  }
+
   // Apply promo in checkout modal
   const applyCheckoutPromoBtn = document.getElementById('apply-checkout-promo');
   if (applyCheckoutPromoBtn) {
@@ -161,7 +180,10 @@ window.addEventListener('DOMContentLoaded', () => {
       const code = document.getElementById('custPromo').value.trim().toUpperCase();
       const msg = document.getElementById('checkout-promo-msg');
       const order = JSON.parse(sessionStorage.getItem('lastOrder')) || {};
-      const itemPrice = (order.product && order.product.price) ? order.product.price : 0;
+      // determine itemPrice: prefer order.product.price (buy now), otherwise compute from cart
+      let itemPrice = 0;
+      if (order.product && order.product.price) itemPrice = order.product.price;
+      else if (Array.isArray(cart) && cart.length > 0) itemPrice = cart.reduce((s, it) => s + (it.price * (it.qty || it.quantity || 0)), 0);
       const tax = +(itemPrice * 0.18).toFixed(2);
       if (!code) { if (msg) { msg.textContent = 'Enter a promo code'; msg.className = 'text-danger'; } return; }
       if (msg) { msg.textContent = 'Verifying...'; msg.className = 'text-info'; }
