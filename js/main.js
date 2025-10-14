@@ -158,10 +158,15 @@ window.addEventListener('DOMContentLoaded', () => {
   const checkoutModalCartEl = document.getElementById('checkoutModal');
   if (checkoutModalCartEl) {
     checkoutModalCartEl.addEventListener('show.bs.modal', () => {
-      // compute subtotal from cart
+      // compute subtotal from latest cart in localStorage (always read fresh)
+      const latestCart = JSON.parse(localStorage.getItem('cart')) || [];
       let subtotal = 0;
-      if (Array.isArray(cart) && cart.length > 0) {
-        subtotal = cart.reduce((s, it) => s + (it.price * (it.qty || it.quantity || 0)), 0);
+      if (Array.isArray(latestCart) && latestCart.length > 0) {
+        subtotal = latestCart.reduce((s, it) => {
+          const q = Number(it.qty || it.quantity || 0) || 0;
+          const p = Number(it.price) || 0;
+          return s + (p * q);
+        }, 0);
       }
       const itemPrice = subtotal;
       const summaryItem = document.getElementById('summary-item'); if (summaryItem) summaryItem.textContent = `$${itemPrice.toFixed(2)}`;
@@ -182,8 +187,18 @@ window.addEventListener('DOMContentLoaded', () => {
       const order = JSON.parse(sessionStorage.getItem('lastOrder')) || {};
       // determine itemPrice: prefer order.product.price (buy now), otherwise compute from cart
       let itemPrice = 0;
-      if (order.product && order.product.price) itemPrice = order.product.price;
-      else if (Array.isArray(cart) && cart.length > 0) itemPrice = cart.reduce((s, it) => s + (it.price * (it.qty || it.quantity || 0)), 0);
+      if (order.product && order.product.price) {
+        itemPrice = Number(order.product.price) || 0;
+      } else {
+        const latestCart = JSON.parse(localStorage.getItem('cart')) || [];
+        if (Array.isArray(latestCart) && latestCart.length > 0) {
+          itemPrice = latestCart.reduce((s, it) => {
+            const q = Number(it.qty || it.quantity || 0) || 0;
+            const p = Number(it.price) || 0;
+            return s + (p * q);
+          }, 0);
+        }
+      }
       const tax = +(itemPrice * 0.18).toFixed(2);
       if (!code) { if (msg) { msg.textContent = 'Enter a promo code'; msg.className = 'text-danger'; } return; }
       if (msg) { msg.textContent = 'Verifying...'; msg.className = 'text-info'; }

@@ -1,4 +1,4 @@
-// Promo code logic (copied)
+// Promo code logic 
 function verifyPromoCode(code) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
