@@ -1,0 +1,69 @@
+/* Navbar, branding, navigation styles */
+.navbar-nav.flex-row {
+  flex-direction: row !important;
+  justify-content: center;
+  align-items: center;
+}
+.navbar-nav.flex-row .nav-link {
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+  font-size: 1.08rem;
+}
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.18s, text-decoration 0.18s;
+  letter-spacing: 0.5px;
+}
+.bg-gradient-primary {
+  background: linear-gradient(90deg, #0d6efd 0%, #6f42c1 100%);
+}
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.18s, text-decoration 0.18s;
+}
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #ffd700;
+  text-decoration: underline;
+}
+.navbar-dark .navbar-brand .logo-shop {
+  font-weight: 800;
+  color: #222;
+  font-size: 1.3rem;
+}
+.navbar-dark .navbar-brand .logo-line {
+  font-weight: 700;
+  color: #ff2e2e;
+  text-decoration: underline;
+  margin-left: 2px;
+}
+.navbar-dark .btn-outline-light {
+  border-color: #fff;
+  color: #fff;
+}
+.navbar-dark .btn-outline-light:hover {
+  background: #fff;
+  color: #0d6efd;
+}
+.navbar-dark .btn-primary {
+  background: #ff2e2e;
+  border-color: #ff2e2e;
+}
+.navbar-dark .btn-primary:hover {
+  background: #d63333;
+  border-color: #d63333;
+}
+.navbar-dark .navbar-toggler {
+  border-color: #fff;
+}
+.navbar-dark .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.7)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+#mainNav { transition: box-shadow 0.25s ease; box-shadow: none; }
+/* When scrolled, only add a light shadow. Avoid translations or font-size changes that shift layout. */
+#mainNav.scrolled { box-shadow: 0 4px 18px rgba(0,0,0,0.08); }
+
+/* Keep logo sizes consistent to prevent reflow when `.scrolled` toggles */
+.navbar-nav .nav-link { transition: color 0.15s, text-decoration 0.15s; color: #333; }
+.navbar-nav .nav-link:hover { color: #d63333; text-decoration: underline; }

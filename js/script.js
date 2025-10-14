@@ -1,0 +1,1 @@
+// (deprecated) This file was a placeholder after modularization. All logic moved to products.js, cart.js, promo.js, checkout.js, main.js.

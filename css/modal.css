@@ -1,0 +1,20 @@
+/* Modal dialog and overlay styles */
+.modal-content {
+  border-radius: 14px;
+}
+.modal-header {
+  border-bottom: none;
+}
+.modal-title {
+  font-weight: 700;
+}
+/* Prevent navbar shake when modal opens (focus outline/scrollbar) */
+.modal-open .navbar { margin-right: 0 !important; transition: none !important; }
+
+/* Prevent Bootstrap from adding padding-right to body when modal opens (this causes horizontal shift) */
+.modal-open {
+  padding-right: 0 !important;
+}
+
+/* Ensure fixed-top navbar does not reflow when scrollbars appear/disappear */
+.navbar.fixed-top { right: 0; left: 0; }

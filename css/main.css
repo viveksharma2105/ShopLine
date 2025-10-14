@@ -1,0 +1,51 @@
+/* General layout, utility, global styles */
+body {
+  background: #f8f9fa;
+}
+.navbar-brand {
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.btn {
+  transition: background 0.2s, color 0.2s;
+}
+.btn:hover, .btn:focus {
+  background: #0d6efd;
+  color: #fff;
+}
+#cart-count {
+  font-size: 1rem;
+  vertical-align: middle;
+}
+#cart-items .cart-item {
+  border-bottom: 1px solid #e9ecef;
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+#cart-items .cart-item:last-child {
+  border-bottom: none;
+}
+.cart-item-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+#promo-message {
+  min-height: 24px;
+}
+#checkout-success {
+  font-size: 1.1rem;
+}
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 1rem;
+  }
+  #cart-items .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+footer { border-top: 1px solid #e9ecef; }
